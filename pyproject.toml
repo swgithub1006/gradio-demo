@@ -88,6 +88,7 @@ dependencies = [
     "networkx==3.4.2",
     "nltk==3.9.1",
     "numpy==2.2.6",
+    "ollama==0.5.3",
     "openai==1.97.1",
     "openvino==2025.2.0",
     "openvino-genai==2025.2.0.0",
