@@ -5,7 +5,6 @@ def chat_to_ollama(history_contents):
     response = ollama.Client(
         host="http://127.0.0.1:11434"
     ).chat(
-        # model='qwen3:4b',
         model="gemma3:4b",
         stream=True,
         messages=history_contents,

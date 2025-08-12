@@ -10,7 +10,7 @@ def chat_to_ollama(history_contents): # 与ollama聊天
     response = ollama.Client(
         host="http://127.0.0.1:11434"
     ).chat(
-        model='qwen3:4b', # 模型代号
+        model='gemma3:4b', # 模型代号
         stream=False, # 是否使用流传输
         messages=history_contents, # 上下文
         options={ # 其他选项
