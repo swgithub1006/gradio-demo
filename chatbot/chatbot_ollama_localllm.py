@@ -22,6 +22,7 @@ def chat_to_ollama(history_contents):
         host="http://127.0.0.1:11434"
     ).chat(
         model="gemma3:4b",
+        # model="deepseek-r1:8b",
         stream=True,
         messages=history_contents,
         options={
@@ -59,7 +60,12 @@ def chat_with_ollama(message, history):
             if chunk.get('message') and chunk['message'].get('content'):
                 content = chunk['message']['content']
                 assistant_response += content
+                # print(f"Chunk received: {chunk}", end="", flush=True)  # Debug print
+                print(content, end="", flush=True)  # Debug print
                 yield assistant_response  # Yield only the content string
+        
+        # Ensure the final response is properly formatted for Gradio
+        yield assistant_response
         
     except Exception as e:
         yield f"Error: {str(e)}"
