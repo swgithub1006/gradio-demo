@@ -3,8 +3,8 @@ import gradio as gr
 import logging
 from typing import Iterator
 
-# MODEL_PATH = "E:\\models\\OpenVINO\\DeepSeek-R1-Distill-Qwen-7B-int4-ov"
-MODEL_PATH = "E:\\models\\OpenVINO\\Qwen3-1.7B-int8-ov"
+MODEL_PATH = "E:\\models\\OpenVINO\\DeepSeek-R1-Distill-Qwen-7B-int4-ov"
+# MODEL_PATH = "E:\\models\\OpenVINO\\Qwen3-1.7B-int8-ov"
 DEVICE = "GPU"
 MAX_HISTORY_LENGTH = 5
 MAX_NEW_TOKENS = 4096
@@ -63,7 +63,8 @@ def chat_with_model(message, history):
 
 demo = gr.ChatInterface(
     fn=chat_with_model,
-    type="messages",
+    # type="messages",
+    type="stream",
     title="🤖 本地OpenVINO聊天机器人",
     description="使用本地 DeepSeek-R1 模型提供动力",
 )
