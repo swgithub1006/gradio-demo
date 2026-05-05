@@ -5,7 +5,8 @@ import os
 # https://chat.deepseek.com/a/chat/s/d1eb8a9c-60bc-4fd6-ad50-17cd74b08b87
 # 1. 加载本地OpenVINO模型
 #    请确保此路径下包含 model.xml 和 model.bin 文件。
-model_path = "E:\\models\\openvino\\DeepSeek-R1-Distill-Qwen-7B-int4-ov"
+# model_path = "E:\\models\\OpenVINO\\DeepSeek-R1-Distill-Qwen-7B-int4-ov"
+MODEL_PATH = "E:\\models\\OpenVINO\\Qwen3-1.7B-int8-ov"
 
 if not os.path.exists(model_path):
     raise FileNotFoundError(f"错误：找不到本地模型路径 '{model_path}'。请确保路径正确。")
