@@ -2,6 +2,7 @@ import gradio as gr
 import openvino_genai as ov_genai
 import os
 
+# https://chat.deepseek.com/a/chat/s/d1eb8a9c-60bc-4fd6-ad50-17cd74b08b87
 # 1. 加载本地OpenVINO模型
 #    请确保此路径下包含 model.xml 和 model.bin 文件。
 model_path = "E:\\models\\openvino\\DeepSeek-R1-Distill-Qwen-7B-int4-ov"
