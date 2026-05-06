@@ -1,4 +1,4 @@
-import os
+import time
 import gradio as gr
 from openai import OpenAI
 
@@ -7,6 +7,8 @@ client = OpenAI(
     api_key="unused"
 )
 
+
+
 def predict(message, history):
     # 构建消息列表，包含历史记录
     messages = [{"role": "system", "content": "You are a helpful assistant."}]
@@ -14,7 +16,7 @@ def predict(message, history):
     messages.append({"role": "user", "content": message})
     
     try:
-        # 使用非流式输出以确保 Gradio 5.x 渲染稳定
+        # 使用非流式请求获取完整内容，以确保稳定性
         response = client.chat.completions.create(
             model="qwen3:4b",
             messages=messages,
@@ -22,18 +24,24 @@ def predict(message, history):
             stream=False
         )
         
-        content = response.choices[0].message.content
+        full_content = response.choices[0].message.content
         
-        # 移除 <think> 标签内容，防止其干扰界面显示
+        # 移除 <think> 标签内容
         import re
-        clean_content = re.sub(r'<think>.*?</think>', '', content, flags=re.DOTALL).strip()
+        clean_content = re.sub(r'<think>.*?</think>', '', full_content, flags=re.DOTALL).strip()
+        if not clean_content:
+            clean_content = full_content
         
-        # 如果过滤后为空，则显示原内容
-        return clean_content if clean_content else content
+        # 模拟流式输出（打字机效果）
+        displayed_content = ""
+        for char in clean_content:
+            displayed_content += char
+            yield displayed_content
+            time.sleep(0.01) # 控制打字速度
                 
     except Exception as e:
         print(f"Error in predict: {e}")
-        return f"Error: {e}"
+        yield f"Error: {e}"
 
 demo = gr.ChatInterface(predict, type="messages")
 
