@@ -3,7 +3,7 @@ import gradio as gr
 import logging
 from typing import Iterator
 
-MODEL_PATH = "E:\\models\\OpenVINO\\Qwen3-1.7B-int8-ov"
+MODEL_PATH = "E:\\models\\OpenVINO\\Qwen3-4B-int4-ov"
 DEVICE = "GPU"
 MAX_HISTORY_LENGTH = 5
 MAX_NEW_TOKENS = 4096
